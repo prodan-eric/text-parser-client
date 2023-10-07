@@ -2,13 +2,14 @@ import React, { useState } from "react"
 import "firebase/auth"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../api"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
   const [confirmPassword, setConfirmPassword] = useState<string>("")
   const [error, setError] = useState<string | null>(null)
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -19,12 +20,11 @@ const SignUp: React.FC = () => {
     }
 
     createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user
-        console.log(user)
+      .then(() => {
+        navigate('/')
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
+        setError('There was an issue with creating your account.')
       })
   }
 
