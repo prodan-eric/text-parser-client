@@ -3,6 +3,7 @@ import "firebase/auth"
 import { createUserWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../api"
 import { Link, useNavigate } from "react-router-dom"
+import getUserError from "../../api/getUserError"
 
 const SignUp: React.FC = () => {
   const [email, setEmail] = useState<string>("")
@@ -22,9 +23,12 @@ const SignUp: React.FC = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
         navigate('/')
+        setError('')
       })
-      .catch(() => {
-        setError('There was an issue with creating your account.')
+      .catch((error) => {
+        const userError = getUserError(error.message)
+        console.log(error.message)
+        setError(userError)
       })
   }
 
