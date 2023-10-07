@@ -49,7 +49,7 @@ const Home = () => {
       <Navbar />
       <div className="bg-gray-100 ">
         <div className="container mx-auto py-8 flex flex-col lg:flex-row">
-          <div className="lg:w-1/4 bg-white shadow p-4 rounded-lg">
+          <div className="lg:w-1/4 lg:min-h-[500px] bg-white shadow p-4 rounded-lg">
             <div className="flex justify-center items-center">
               <button
                 className="p-3 my-4 bg-blue-400 hover:bg-blue-300 text-white rounded"
