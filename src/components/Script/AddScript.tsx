@@ -41,6 +41,8 @@ const AddScript = ({
     userId: currentUser?.uid || null,
   })
 
+  const isButtonDisabled  = !scriptRequest.name || !scriptRequest.instruction
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -59,7 +61,8 @@ const AddScript = ({
       setStatus({
         ...status,
         state: "failed",
-        message: "There was an issue with generating your script. Please try again.",
+        message:
+          "There was an issue with generating your script. Please try again.",
       })
       return
     }
@@ -116,8 +119,14 @@ const AddScript = ({
         </div>
         <div className="flex items-center justify-end">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className={`font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline 
+                ${
+                  isButtonDisabled
+                    ? "bg-gray-400 text-white cursor-not-allowed"
+                    : "bg-blue-500 hover:bg-blue-700 text-white"
+                }`}
             type="submit"
+            disabled={isButtonDisabled}
           >
             Generate
           </button>
