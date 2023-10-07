@@ -51,17 +51,18 @@ const ScriptList = ({
           <div
             data-tooltip-id={script.id}
             data-tooltip-content={script.instruction}
+            className="flex-1 overflow-hidden whitespace-nowrap max-w-[80%] text-ellipsis" 
           >
             {script.name}
           </div>
           <RiDeleteBin6Line
-            className="hover:text-red-500"
+            className="hover:text-red-500 flex-shrink-0" 
             onClick={() => handleDeleteScript(script)}
           />
         </li>
       ))}
     </ul>
-  ) : (
+  )  : (
     <div className=" p-6 rounded-lg flex items-center justify-center text-center bg-white">
       <p className=" text-gray-500 select-none">No scripts yet</p>
     </div>

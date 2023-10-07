@@ -11,7 +11,12 @@ const getScripts = async (userId: string): Promise<ClientScript[]> => {
     console.error("Error:", error)
   }
   const clientScripts = scripts?.map((script) => {
-    const parse = new Function(script.fn)() as ParseFunction
+    let parse: ParseFunction | null
+    try {
+      parse = new Function(script.fn)() as ParseFunction
+    } catch {
+      parse = null
+    }
     return { ...script, parse } as ClientScript
   })
   return clientScripts || []

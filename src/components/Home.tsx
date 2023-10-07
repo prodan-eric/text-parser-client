@@ -29,10 +29,10 @@ const Home = () => {
 
   const handleInitialPanelChange = (newText: string) => {
     setInitialText(newText)
-    if (activeScript) {
+    if (activeScript?.parse) {
       const newProcessedText = activeScript.parse(newText)
       setProcessedText(newProcessedText)
-    }
+    } 
   }
   useEffect(() => {
     if (!currentUser) {
