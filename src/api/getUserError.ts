@@ -10,6 +10,8 @@ const getUserError = (errorMessage: string) => {
       return "Wrong password. Please try again."
     case "auth/email-already-in-use":
       return "This E-mail is already registered."
+    case "auth/invalid-login-credentials":
+      return "Invalid E-mail or password."
     default:
       return "An error occurred. Please try again."
   }

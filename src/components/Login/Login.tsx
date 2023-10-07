@@ -2,22 +2,25 @@ import React, { useState } from "react"
 import { auth } from "../../api"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { Link, useNavigate } from "react-router-dom"
+import getUserError from "../../api/getUserError"
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user
-        console.log("logged in user ", user)
+      .then(() => {
         navigate("/")
+        setError('')
       })
       .catch((error) => {
+        const userError = getUserError(error.message)
         console.log(error)
+        setError(userError)
       })
   }
 
@@ -62,6 +65,7 @@ const Login: React.FC = () => {
               Don't have an account? Sign up
             </Link>
           </div>
+          {error && <p className="text-red-500 text-xs mt-2 flex justify-center mb-4">{error}</p>}
           <div className="mb-4">
             <button
               type="submit"
