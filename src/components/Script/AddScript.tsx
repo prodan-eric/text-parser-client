@@ -68,6 +68,7 @@ const AddScript = ({
     }
     setStatus({ ...status, state: "success" })
     setScripts([...scripts, newScript])
+    setScriptRequest({...scriptRequest, name: '', instruction: ''})
     onSubmit?.()
   }
 
