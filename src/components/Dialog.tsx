@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface DialogProps {
   isOpen: boolean;
@@ -10,6 +10,18 @@ interface DialogProps {
 }
 
 const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, title, children, isLoading, loadingMessage }) => {
+  useEffect(() => {
+    const handleEscPress = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleEscPress);
+    return () => {
+      window.removeEventListener('keydown', handleEscPress);
+    };
+  }, [isOpen, onClose]);
+
   const backdropClasses = isOpen
     ? 'fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 overflow-hidden transition-opacity'
     : 'hidden';
@@ -28,7 +40,6 @@ const Dialog: React.FC<DialogProps> = ({ isOpen, onClose, title, children, isLoa
             </div>
             <div className="modal-body">
               <div className="flex items-center justify-center">
-                {/* You can replace this with your preferred loading spinner component */}
                 <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-500"></div>
               </div>
             </div>

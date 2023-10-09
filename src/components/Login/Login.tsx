@@ -7,7 +7,7 @@ import getUserError from "../../api/getUserError"
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("")
   const [password, setPassword] = useState<string>("")
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null)
   const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -15,7 +15,7 @@ const Login: React.FC = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         navigate("/")
-        setError('')
+        setError("")
       })
       .catch((error) => {
         const userError = getUserError(error.message)
@@ -61,15 +61,22 @@ const Login: React.FC = () => {
             />
           </div>
           <div className="mb-4 text-center">
-            <Link to="/signup" className="text-blue-500 text-xs hover:underline">
+            <Link
+              to="/signup"
+              className="text-blue-500 text-xs hover:underline"
+            >
               Don't have an account? Sign up
             </Link>
           </div>
-          {error && <p className="text-red-500 text-xs mt-2 flex justify-center mb-4">{error}</p>}
+          {error && (
+            <p className="text-red-500 text-xs mt-2 flex justify-center mb-4">
+              {error}
+            </p>
+          )}
           <div className="mb-4">
             <button
               type="submit"
-              className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
+              className="w-full py-2 px-4 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-md hover:from-blue-300 hover:to-blue-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out shadow-lg"
             >
               Login
             </button>

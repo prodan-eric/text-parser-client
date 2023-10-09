@@ -7,7 +7,7 @@ import Login from "./components/Login/Login";
 import { AuthProvider } from "./auth/Auth";
 import Home from "./components/Home";
 import SignUp from "./components/SignUp/SignUp";
-import About from "./components/About";
+// import About from "./components/About";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
           <Route index path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/about" element={<About />} />
+          {/* <Route path="/about" element={<About />} /> */}
         </Routes>
       </Router>
     </AuthProvider>

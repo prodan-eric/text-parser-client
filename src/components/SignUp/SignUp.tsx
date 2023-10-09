@@ -22,8 +22,8 @@ const SignUp: React.FC = () => {
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(() => {
-        navigate('/')
-        setError('')
+        navigate("/")
+        setError("")
       })
       .catch((error) => {
         const userError = getUserError(error.message)
@@ -94,7 +94,7 @@ const SignUp: React.FC = () => {
           <div className="mb-4">
             <button
               type="submit"
-              className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
+              className="w-full py-2 px-4 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-md hover:from-blue-300 hover:to-blue-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 transition duration-300 ease-in-out shadow-lg"
             >
               Sign Up
             </button>

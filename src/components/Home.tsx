@@ -8,6 +8,7 @@ import AddScript from "./Script/AddScript"
 import { ClientScript } from "../types"
 import ScriptList from "./Script/ScriptList"
 import useScripts from "../hooks/useScripts"
+import Footer from "./Footer"
 
 export interface Status {
   state: "pending" | "failed" | "success" | "default"
@@ -32,7 +33,7 @@ const Home = () => {
     if (activeScript?.parse) {
       const newProcessedText = activeScript.parse(newText)
       setProcessedText(newProcessedText)
-    } 
+    }
   }
   useEffect(() => {
     if (!currentUser) {
@@ -40,9 +41,9 @@ const Home = () => {
     }
   }, [currentUser, navigate])
 
-  useEffect(()=>{
-    setInitialText('')
-    setProcessedText('')
+  useEffect(() => {
+    setInitialText("")
+    setProcessedText("")
   }, [activeScript])
   return (
     <>
@@ -52,7 +53,7 @@ const Home = () => {
           <div className="lg:w-1/4 lg:min-h-[500px] bg-white shadow p-4 rounded-lg">
             <div className="flex justify-center items-center">
               <button
-                className="p-3 my-4 bg-blue-400 hover:bg-blue-300 text-white rounded"
+                className="p-3 my-4 bg-gradient-to-r from-blue-400 to-blue-500 hover:from-blue-300 hover:to-blue-400 text-white rounded transition duration-300"
                 onClick={() => setDialogState(true)}
               >
                 New Script
@@ -76,6 +77,7 @@ const Home = () => {
                   placeholder="Your input text..."
                 />
                 <TextPanel
+                  hasCopyButton={true}
                   value={processedText}
                   onChange={(newText) => setProcessedText(newText)}
                   placeholder="Your output text..."
@@ -95,7 +97,7 @@ const Home = () => {
         title="Add a new script"
         isOpen={dialogState}
         onClose={() => setDialogState(false)}
-        isLoading={status.state === 'pending'}
+        isLoading={status.state === "pending"}
         loadingMessage="Generating your script"
       >
         <AddScript
@@ -108,6 +110,7 @@ const Home = () => {
           }}
         />
       </Dialog>
+      <Footer />
     </>
   )
 }

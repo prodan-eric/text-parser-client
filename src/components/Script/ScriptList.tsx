@@ -31,14 +31,12 @@ const ScriptList = ({
   }
 
   return scripts.length > 0 ? (
-    <ul>
+    <ul className="space-y-2">
       {scripts.map((script, index) => (
         <li
           key={index}
-          className={`p-4 flex justify-between items-center cursor-pointer ${
-            activeScript?.id === script.id
-              ? "bg-gray-100 rounded"
-              : "hover:bg-gray-100 rounded"
+          className={`p-4 flex justify-between items-center cursor-pointer rounded shadow-sm transform transition duration-200 hover:scale-101 ${
+            activeScript?.id === script.id ? "bg-blue-50" : "hover:bg-gray-100"
           }`}
           onClick={() => handleItemClick(script)}
         >
@@ -51,20 +49,23 @@ const ScriptList = ({
           <div
             data-tooltip-id={script.id}
             data-tooltip-content={script.instruction}
-            className="flex-1 overflow-hidden whitespace-nowrap max-w-[80%] text-ellipsis" 
+            className="flex-1 overflow-hidden whitespace-nowrap max-w-[80%] text-ellipsis"
           >
             {script.name}
           </div>
           <RiDeleteBin6Line
-            className="hover:text-red-500 flex-shrink-0" 
-            onClick={() => handleDeleteScript(script)}
+            className="text-gray-400 hover:text-red-500 flex-shrink-0 transition duration-300"
+            onClick={(e: React.MouseEvent) => {
+              e.stopPropagation()
+              handleDeleteScript(script)
+            }}
           />
         </li>
       ))}
     </ul>
-  )  : (
-    <div className=" p-6 rounded-lg flex items-center justify-center text-center bg-white">
-      <p className=" text-gray-500 select-none">No scripts yet</p>
+  ) : (
+    <div className="p-6 rounded-lg flex items-center justify-center text-center bg-gray-100 shadow-inner">
+      <p className="text-gray-500 select-none font-medium">No scripts yet</p>
     </div>
   )
 }
