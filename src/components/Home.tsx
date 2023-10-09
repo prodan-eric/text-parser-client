@@ -35,6 +35,11 @@ const Home = () => {
       setProcessedText(newProcessedText)
     }
   }
+  const clearText = () => {
+    setInitialText('')
+    setProcessedText('')
+  }
+  
   useEffect(() => {
     if (!currentUser) {
       navigate("/login")
@@ -72,12 +77,14 @@ const Home = () => {
               <>
                 {" "}
                 <TextPanel
+                  icon="remove"
                   value={initialText}
                   onChange={handleInitialPanelChange}
                   placeholder="Your input text..."
+                  clearText={clearText}
                 />
                 <TextPanel
-                  hasCopyButton={true}
+                  icon="copy"
                   value={processedText}
                   onChange={(newText) => setProcessedText(newText)}
                   placeholder="Your output text..."
