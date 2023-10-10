@@ -23,9 +23,6 @@ const Navbar = () => {
             <span className="text-white text-2xl font-semibold">Text Parser</span>
           </div>
           <div className="flex items-center mt-4 md:mt-0 space-x-6">
-            {/* <Link to="/about" className="text-white hover:underline transition duration-300 ease-in-out">
-              About
-            </Link> */}
             <button
               onClick={handleLogout}
               className="text-white hover:bg-purple-700 px-4 py-2 rounded transition duration-300 ease-in-out transform hover:-translate-y-0.5"
