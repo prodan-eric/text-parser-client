@@ -42,9 +42,10 @@
           >
             <Tooltip
               id={script.id}
+              style={{ backgroundColor: "red" }}
               place="bottom"
               classNameArrow="hidden"
-              className="text-slate-50 max-w-[150px]"
+              className="text-slate-50 max-w-[150px] z-50"
             />
             <div
               data-tooltip-id={script.id}
