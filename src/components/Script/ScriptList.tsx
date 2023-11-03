@@ -42,7 +42,7 @@
           >
             <Tooltip
               id={script.id}
-              style={{ backgroundColor: "red" }}
+              style={{ backgroundColor: "black" , color: 'white'}}
               place="bottom"
               classNameArrow="hidden"
               className="text-slate-50 max-w-[150px] z-50"
